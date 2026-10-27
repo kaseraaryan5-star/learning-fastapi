@@ -1,4 +1,5 @@
 # Insurance Premium Category Prediction
+![App screenshot](screenshot.png)
 
 An end-to-end ML app: a trained model served through a **FastAPI** backend with validated inputs, plus a **Streamlit** frontend. It returns the predicted premium category along with the model's confidence and class probabilities.
 
