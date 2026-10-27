@@ -1,10 +1,10 @@
 # Insurance Premium Category Prediction
 
-An end-to-end ML app: a trained model served through a **FastAPI** backend with validated inputs, plus a **Streamlit** frontend.
+An end-to-end ML app: a trained model served through a **FastAPI** backend with validated inputs, plus a **Streamlit** frontend. It returns the predicted premium category along with the model's confidence and class probabilities.
 
 ## What it does
 
-Takes a person's profile and predicts their insurance premium category.
+Takes a person's profile and predicts their insurance premium category (Low, Medium or High).
 
 **Inputs:** age, weight (kg), height (m), annual income (LPA), smoker (yes/no), city, occupation
 
@@ -14,7 +14,7 @@ Takes a person's profile and predicts their insurance premium category.
 - `lifestyle_risk` (low, medium, high) from smoking status and BMI
 - `city_tier` (1, 2, 3) from the city
 
-Inputs are validated with Pydantic (ranges, allowed occupations), so bad requests are rejected before reaching the model.
+Inputs are validated with Pydantic (value ranges, allowed occupations), so bad requests are rejected before they reach the model.
 
 ## Tech stack
 
@@ -44,7 +44,7 @@ uvicorn App:app --reload
 streamlit run Frontend.py
 ```
 
-API docs are available at `http://127.0.0.1:8000/docs`.
+The API docs are available at `http://127.0.0.1:8000/docs`. To point the frontend to a different backend, set the `API_URL` environment variable.
 
 ## Example request
 
@@ -65,7 +65,17 @@ curl -X POST http://127.0.0.1:8000/predict \
 Response:
 
 ```json
-{"predicted_category": "Low"}
+{
+  "response": {
+    "predicted_category": "Low",
+    "confidence": 0.75,
+    "class_probabilities": {
+      "High": 0.0,
+      "Low": 0.75,
+      "Medium": 0.25
+    }
+  }
+}
 ```
 
 ## Next steps
