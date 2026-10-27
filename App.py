@@ -12,12 +12,12 @@ with open('model.pkl','rb') as f:
 app = FastAPI()
 
 
-tier_1_cities = ['Mumbai','Delhi','Banglore','Chennai','Kolkata','Hyderabad','Pune']
+tier_1_cities = ['Mumbai','Delhi','Bangalore','Chennai','Kolkata','Hyderabad','Pune']
 tier_2_cities = [
-    'Jaipur','Chandigarh','Indore','Lucknow','Ranchi','Patna','Vishakhapatnam','Coimbatore',
+    'Jaipur','Chandigarh','Indore','Lucknow','Ranchi','Patna','Visakhapatnam','Coimbatore',
     'Bhopal','Nagpur','Vadodara','Surat','Rajkot','Jodhpur','Raipur','Amritsar','Varanasi',
     'Agra','Dehradun','Mysore','Jabalpur','Guwahati','Thiruvananthapuram','Ludhiana','Nashik',
-    'Allahabad','Udaipur','Aurangabad','Hubli','Belgaum','Salem','Vijaywada','Tiruchirappalli',
+    'Allahabad','Udaipur','Aurangabad','Hubli','Belgaum','Salem','Vijayawada','Tiruchirappalli',
     'Bhavnagar','Gwalior','Dhanbad','Bareilly','Aligarh','Gaya','Kozhikode','Warangal',
     'Kolhapur','Bilaspur','Jalandhar','Noida','Guntur','Asansol','Siliguri'
 ]
@@ -84,4 +84,4 @@ def predict_premium(data: UserInput):
 
     prediction = model.predict(input_df)[0]
 
-    return JSONResponse(status_code=200,content=('predicted_category',prediction))
+    return JSONResponse(status_code=200, content={'predicted_category': prediction})
